@@ -38,15 +38,10 @@ export default{
       return this.$store.state.updating
     }
   },
-  // directives: {
-  //   Infinite () {
-  //     console.log('infinite')
-  //   }
-  // },
   created () {
     window.addEventListener('scroll', _.throttle((event) => {
       if (this.$store.state.updating === false && this.$route.name === 'index') {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 10)) {
           console.log('we should load more posts....')
           this.$store.dispatch('getMorePosts').then(console.log('loading finished...'))
         }
